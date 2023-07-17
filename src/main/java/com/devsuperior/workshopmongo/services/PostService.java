@@ -15,6 +15,8 @@ import com.devsuperior.workshopmongo.services.exceptioons.ResourceNotFoundExcept
 @Service
 public class PostService {
 
+	
+	/*
 	@Autowired
 	private PostRepository repository;
 
@@ -34,4 +36,5 @@ public class PostService {
 		List<PostDTO> result = repository.fullSearch(text, minDate, maxDate).stream().map(x -> new PostDTO(x)).toList();
 		return result;
 	}
+	*/
 }
