@@ -43,6 +43,12 @@ public class UserService {
 	   .switchIfEmpty(Mono.error(new ResourceNotFoundException("Usuário Não Encontrado!! Não é possível atualizar")));
 	}
 	
+	public Mono<Void> deleteUser(String id){
+		return repository.findById(id)
+				.switchIfEmpty(Mono.error(new ResourceNotFoundException("Usuário não encontrado! Não é possível deletar")))
+				.flatMap(x -> repository.delete(x));
+	}
+ 	
 	
 	private static void copyDtoToEntity(UserDTO dto, User entity) {
 		entity.setId(dto.getId());
