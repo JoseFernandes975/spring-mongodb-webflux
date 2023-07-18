@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,11 @@ public class UserController {
 	public Mono<ResponseEntity<UserDTO>> insertUser(@RequestBody UserDTO dto, UriComponentsBuilder uri){
 		return service.insertUser(dto)
 				.map(x -> ResponseEntity.created(uri.path("/{id").buildAndExpand(x.getId()).toUri()).body(x));
+	}
+	
+	@PutMapping(value = "/{id}")
+	public Mono<ResponseEntity<UserDTO>> updateUser(@PathVariable String id, @RequestBody UserDTO dto){
+		return service.updateUser(id, dto).map(x -> ResponseEntity.ok().body(x));
 	}
 	
 	/*
