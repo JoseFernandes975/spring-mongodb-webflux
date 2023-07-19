@@ -49,29 +49,8 @@ public class PostController {
 		return service.fullSearch(text, min, max);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	@GetMapping(value = "/fullsearch")
-	public ResponseEntity<List<PostDTO>> fullSearch(
-			@RequestParam(value = "text", defaultValue = "") String text,
-			@RequestParam(value = "minDate", defaultValue = "") String minDate,
-			@RequestParam(value = "maxDate", defaultValue = "") String maxDate) throws UnsupportedEncodingException, ParseException {
-		
-		text = URL.decodeParam(text);
-		Instant min = URL.convertDate(minDate, Instant.EPOCH);
-		Instant max = URL.convertDate(maxDate, Instant.now());
-		
-		List<PostDTO> list = service.fullSearch(text, min, max);
-		return ResponseEntity.ok(list);
-	}
-	*/
+	 @GetMapping(value = "/user/{id}")
+	 public Flux<PostDTO> findByUser(@PathVariable String id){
+		 return service.findPostByUser(id);
+	 }
 }
